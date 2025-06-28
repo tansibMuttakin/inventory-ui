@@ -14,8 +14,10 @@ const Login = () => {
 
     try {
       const res = await api.post("/login", { email, password });
-      localStorage.setItem("authToken", res.data.token);
-      api.defaults.headers.common["Authorization"] = `Bearer ${res.data.token}`;
+      localStorage.setItem("authToken", res.data.access_token);
+      api.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${res.data.access_token}`;
       navigate("/");
     } catch (err) {
       setError("Invalid credentials");
@@ -56,14 +58,14 @@ const Login = () => {
       </form>
       <Link
         to="/register"
-        className="block mt-4 w-full bg-blue-600 hover:bg-blue-700 transition text-white font-semibold py-3 rounded-md shadow-sm"
+        className="block mt-4 w-full bg-blue-600 hover:bg-blue-700 transition text-white font-semibold py-3 rounded-md shadow-sm text-center"
       >
         Register
       </Link>
       <div className="mt-6 text-center">
         <p className="text-sm text-gray-600">
           Demo Email:{" "}
-          <span className="font-medium text-gray-800">demo@example.com</span>
+          <span className="font-medium text-gray-800">test@example.com</span>
         </p>
         <p className="text-sm text-gray-600 mb-2">
           Demo Password:{" "}

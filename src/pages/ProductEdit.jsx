@@ -1,15 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { api } from "../../api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const ProductEntry = () => {
+const ProductEdit = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+
   const [form, setForm] = useState({
     name: "",
     purchase_price: "",
     sell_price: "",
     opening_stock: "",
   });
+
+  const [loading, setLoading] = useState(true);
+
+  // Fetch existing product data
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const res = await api.get(`/products/${id}`);
+        const data = res.data;
+        setForm({
+          name: data.name,
+          purchase_price: data.purchase_price,
+          sell_price: data.sell_price,
+          opening_stock: data.opening_stock,
+        });
+        setLoading(false);
+      } catch (error) {
+        console.error("Failed to fetch product:", error);
+        alert("Could not load product data.");
+        navigate("/products");
+      }
+    };
+
+    fetchProduct();
+  }, [id, navigate]);
 
   const handleChange = (e) => {
     setForm({
@@ -22,25 +49,21 @@ const ProductEntry = () => {
     e.preventDefault();
 
     try {
-      await api.post("/products", form);
-      alert("Product added successfully!");
-      setForm({
-        name: "",
-        purchase_price: "",
-        sell_price: "",
-        opening_stock: "",
-      });
+      await api.put(`/products/${id}`, form);
+      alert("Product updated successfully!");
       navigate("/products");
     } catch (error) {
-      console.error("Failed to add product:", error);
-      alert("Error adding product.");
+      console.error("Failed to update product:", error);
+      alert("Error updating product.");
     }
   };
+
+  if (loading) return <div className="p-6 text-center">Loading...</div>;
 
   return (
     <div className="max-w-md mx-auto mt-10 bg-white p-6 rounded shadow">
       <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">
-        Add New Product
+        Edit Product
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -103,11 +126,11 @@ const ProductEntry = () => {
           type="submit"
           className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
         >
-          Add Product
+          Update Product
         </button>
       </form>
     </div>
   );
 };
 
-export default ProductEntry;
+export default ProductEdit;

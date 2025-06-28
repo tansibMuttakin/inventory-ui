@@ -7,7 +7,9 @@ const Dashboard = () => {
     <div>
       {/* Main content */}
       <div className="p-6 text-center">
-        <h1 className="text-2xl font-bold">Welcome to the Dashboard!</h1>
+        <h1 className="text-2xl font-bold">
+          Welcome To Inventory and Financial Reporting System!
+        </h1>
       </div>
     </div>
   );

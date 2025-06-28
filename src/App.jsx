@@ -6,6 +6,7 @@ import Product from "./pages/Product";
 import Register from "./pages/Register";
 import ProductEntry from "./pages/ProductEntry";
 import AppLayout from "./layout/AppLayout";
+import ProductEdit from "./pages/ProductEdit";
 
 function App() {
   return (
@@ -32,10 +33,18 @@ function App() {
               }
             />
             <Route
-              path="/add-product"
+              path="/products/add"
               element={
                 <PrivateRoute>
                   <ProductEntry />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/products/:id/edit"
+              element={
+                <PrivateRoute>
+                  <ProductEdit />
                 </PrivateRoute>
               }
             />

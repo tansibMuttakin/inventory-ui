@@ -7,6 +7,8 @@ import Register from "./pages/Register";
 import ProductEntry from "./pages/ProductEntry";
 import AppLayout from "./layout/AppLayout";
 import ProductEdit from "./pages/ProductEdit";
+import SaleEntry from "./pages/SaleEntry";
+import Sales from "./pages/Sales";
 
 function App() {
   return (
@@ -45,6 +47,22 @@ function App() {
               element={
                 <PrivateRoute>
                   <ProductEdit />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/sales"
+              element={
+                <PrivateRoute>
+                  <Sales />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/sales/add"
+              element={
+                <PrivateRoute>
+                  <SaleEntry />
                 </PrivateRoute>
               }
             />

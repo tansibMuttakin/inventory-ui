@@ -16,4 +16,21 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (
+      error.response &&
+      (error.response.status === 401 || error.response.status === 403)
+    ) {
+      localStorage.removeItem("authToken");
+      delete api.defaults.headers.common["Authorization"];
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  }
+);
+
 export { api };

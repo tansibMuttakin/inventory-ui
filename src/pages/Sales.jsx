@@ -44,6 +44,7 @@ const Sales = () => {
             <tr>
               <th className="px-6 py-3 border-b">Product</th>
               <th className="px-6 py-3 border-b">Quantity</th>
+              <th className="px-6 py-3 border-b">Selling Price</th>
               <th className="px-6 py-3 border-b">Discount</th>
               <th className="px-6 py-3 border-b">VAT (%)</th>
               <th className="px-6 py-3 border-b">Total</th>
@@ -56,18 +57,21 @@ const Sales = () => {
             {sales.map((sale) => (
               <tr key={sale.id}>
                 <td className="px-6 py-4 border-b">
-                  {sale.product?.name || "N/A"}
+                  {sale?.product?.name || "N/A"}
                 </td>
-                <td className="px-6 py-4 border-b">{sale.quantity}</td>
-                <td className="px-6 py-4 border-b">TK {sale.discount}</td>
-                <td className="px-6 py-4 border-b">{sale.vat}%</td>
-                <td className="px-6 py-4 border-b">TK {sale.total}</td>
-                <td className="px-6 py-4 border-b">TK {sale.paid_amount}</td>
+                <td className="px-6 py-4 border-b">{sale?.quantity}</td>
+                <td className="px-6 py-4 border-b">
+                  {sale?.product?.sell_price}
+                </td>
+                <td className="px-6 py-4 border-b">TK {sale?.discount}</td>
+                <td className="px-6 py-4 border-b">{sale?.vat}%</td>
+                <td className="px-6 py-4 border-b">TK {sale?.total}</td>
+                <td className="px-6 py-4 border-b">TK {sale?.paid_amount}</td>
                 <td className="px-6 py-4 border-b text-red-600">
-                  TK {sale.due_amount}
+                  TK {sale?.due_amount}
                 </td>
                 <td className="px-6 py-4 border-b">
-                  {new Date(sale.created_at).toLocaleDateString()}
+                  {new Date(sale?.created_at).toLocaleDateString()}
                 </td>
               </tr>
             ))}

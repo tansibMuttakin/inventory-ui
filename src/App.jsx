@@ -9,6 +9,8 @@ import AppLayout from "./layout/AppLayout";
 import ProductEdit from "./pages/ProductEdit";
 import SaleEntry from "./pages/SaleEntry";
 import Sales from "./pages/Sales";
+import Journal from "./pages/Journal";
+import FinancialReport from "./pages/FinancialReport";
 
 function App() {
   return (
@@ -63,6 +65,22 @@ function App() {
               element={
                 <PrivateRoute>
                   <SaleEntry />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/journals"
+              element={
+                <PrivateRoute>
+                  <Journal />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/financial-report"
+              element={
+                <PrivateRoute>
+                  <FinancialReport />
                 </PrivateRoute>
               }
             />

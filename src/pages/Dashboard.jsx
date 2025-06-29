@@ -1,7 +1,3 @@
-import { useNavigate } from "react-router-dom";
-import { api } from "../../api";
-import { Link } from "react-router-dom";
-
 const Dashboard = () => {
   return (
     <div>

@@ -20,13 +20,24 @@ const Navbar = () => {
   return (
     <div>
       <nav className="flex items-center justify-between px-6 py-4 bg-gray-800 text-white shadow-md">
-        <div className="text-xl font-semibold">Dashboard</div>
+        <Link to={"/"}>
+          <div className="text-xl font-semibold">Dashboard</div>
+        </Link>
         <div className="flex items-center gap-4">
           <Link to="/products" className="hover:text-gray-300 transition">
             Products
           </Link>
           <Link to="/sales" className="hover:text-gray-300 transition">
             Sales
+          </Link>
+          <Link to="/journals" className="hover:text-gray-300 transition">
+            Journals
+          </Link>
+          <Link
+            to="/financial-report"
+            className="hover:text-gray-300 transition"
+          >
+            Financial Report
           </Link>
           <button
             onClick={handleLogout}
